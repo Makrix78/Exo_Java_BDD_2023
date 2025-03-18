@@ -55,6 +55,61 @@
         </p>
     <% } %>
 
+    <h2>Exercice 4 : Triangle rectangle 2</h2>
+    <p>Affichage d'un triangle rectangle aligné sur la droite :</p>
+    <% for (int i = 1; i <= cpt; i++) { %>
+        <p>
+        <% for (int j = 1; j <= cpt - i; j++) { %>
+            &nbsp;
+        <% } %>
+        <% for (int j = 1; j <= i; j++) { %>
+            <%= "*" %>
+        <% } %>
+        </p>
+    <% } %>
+
+    <h2>Exercice 5 : Triangle isocèle</h2>
+    <p>Affichage d'un triangle isocèle :</p>
+    <% for (int i = 1; i <= cpt; i++) { %>
+        <p>
+        <% for (int j = 1; j <= cpt - i; j++) { %>
+            &nbsp;
+        <% } %>
+        <% for (int j = 1; j <= i; j++) { %>
+            <%= "*" %>
+        <% } %>
+        </p>
+    <% } %>
+
+    <h2>Exercice 6 : Le demi-losange</h2>
+    <p>Affichage d'un demi-losange :</p>
+    <% for (int i = 1; i <= cpt; i++) { %>
+        <p>
+        <% for (int j = 1; j <= cpt - i; j++) { %>
+            &nbsp;
+        <% } %>
+        <% for (int j = 1; j <= i; j++) { %>
+            <%= "*" %>
+        <% } %>
+        </p>
+    <% } %>
+    <% for (int i = cpt; i >= 1; i--) { %>
+        <p>
+        <% for (int j = 1; j <= cpt - i; j++) { %>
+            &nbsp;
+        <% } %>
+        <% for (int j = 1; j <= i; j++) { %>
+            <%= "*" %>
+        <% } %>
+        </p>
+    <% } %>
+
+    <h2>Exercice 7 : La table de multiplication</h2>
+    <p>Affichage de la table de multiplication de <%= cpt %> :</p>
+    <% for (int i = 1; i <= cpt; i++) { %>
+        <p><%= cpt %> x <%= i %> = <%= cpt * i %></p>
+    <% } %>
+
 <% } %>
 
 <p><a href="index.html">Retour au sommaire</a></p>
