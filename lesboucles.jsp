@@ -17,18 +17,23 @@
 <%-- Vérification de l'existence de la valeur --%>
 <% if (valeur != null && !valeur.isEmpty()) { %>
 
-<%-- Boucle for pour afficher une ligne d'étoiles --%>
-    <%int cpt = Integer.parseInt(valeur); %>
-    <p>
-    <% for (int i = 1; i <= cpt; i++) { %>
-       <%= "*" %>
-    <% } %>
-    </p>
+<%-- Conversion de la valeur saisie en entier --%>
+    <% int cpt = Integer.parseInt(valeur); %>
 
 <h2>Exercice 1 : Le carré d'étoiles</h2>
-<p>Ecrire le code afin de produire un carré d'étoile</p>
-<p>Exemple si l'utilisateur saisie le valeur 5</p>
-<p>*****</br>*****</br>*****</br>*****</br>*****</p>
+<p>Ecrire le code afin de produire un carré d'étoiles</p>
+<p>Exemple si l'utilisateur saisie le valeur 5 :</p>
+
+<%-- Boucle pour afficher le carré d'étoiles --%>
+<% for (int i = 1; i <= cpt; i++) { %>
+    <p>
+    <% for (int j = 1; j <= cpt; j++) { %>
+        <%= "*" %>
+    <% } %>
+    </p>
+<% } %>
+
+<% } %>
 
 <h2>Exercice 2 : Triangle rectangle gauche</h2>
 <p>Ecrire le code afin de produire un triangle rectangle aligné sur la gauche</p>
@@ -48,7 +53,7 @@
 <h2>Exercice 5 : Triangle isocele</h2>
 <p>Ecrire le code afin de produire un triangle rectangle aligné sur la droite</p>
 <p>Exemple si l'utilisateur saisie le valeur 5</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;*</br>&nbsp;&nbsp;&nbsp;**</br>&nbsp;&nbsp;***</br>&nbsp;****</br>*****</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;*</br>&nbsp;&nbsp;&nbsp;**</br>&nbsp;&nbsp;&nbsp;***</br>&nbsp;****</br>*****</p>
 
 <h2>Exercice 6 : Le demi losange</h2>
 <p>Ecrire le code afin de produire un losange</p>
@@ -57,7 +62,7 @@
 <p>*****</br>&nbsp;&nbsp;****</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</p>
 
 <h2>Exercice 7 : La table de multiplication</h2>
-<p>Ecrire le code afin de créser une table de multiplication</p>
+<p>Ecrire le code afin de créer une table de multiplication</p>
 <p>Exemple si l'utilisateur saisie le valeur 5</p>
 <p>5 x 1 = 5</p>
 <p>5 x 2 = 10</p>
