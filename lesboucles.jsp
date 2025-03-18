@@ -1,9 +1,8 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
 <head>
 <title>Boucles</title>
 </head>
-<body bgcolor="white">
+<body bgcolor=white>
 <h1>Exercices sur les boucles</h1>
 <form action="#" method="post">
     <label for="inputValeur">Saisir le nombre d'étoiles : </label>
@@ -17,21 +16,13 @@
 <%-- Vérification de l'existence de la valeur --%>
 <% if (valeur != null && !valeur.isEmpty()) { %>
 
-<%-- Conversion de la valeur saisie en entier --%>
-    <% int cpt = Integer.parseInt(valeur); %>
-    
-<%-- Boucle pour afficher les lignes d'étoiles --%>
+<%-- Boucle for pour afficher une ligne d'étoiles --%>
+    <%int cpt = Integer.parseInt(valeur); %>
+    <p>
     <% for (int i = 1; i <= cpt; i++) { %>
-        <p>
-        <% for (int j = 1; j <= cpt; j++) { %>
-            <%= "*" %>
-        <% } %>
-        </p>
+       <%= "*" %>
     <% } %>
-
-<% } %>
-</body>
-</html>
+    </p>
 
 
 <h2>Exercice 1 : Le carré d'étoiles</h2>
