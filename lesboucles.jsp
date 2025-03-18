@@ -45,6 +45,16 @@
         </p>
     <% } %>
 
+    <h2>Exercice 3 : Triangle rectangle inversé</h2>
+    <p>Affichage d'un triangle rectangle inversé aligné sur la gauche :</p>
+    <% for (int i = cpt; i >= 1; i--) { %>
+        <p>
+        <% for (int j = 1; j <= i; j++) { %>
+            <%= "*" %>
+        <% } %>
+        </p>
+    <% } %>
+
 <% } %>
 
 <p><a href="index.html">Retour au sommaire</a></p>
