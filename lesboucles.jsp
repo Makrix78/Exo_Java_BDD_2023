@@ -35,6 +35,16 @@
         </p>
     <% } %>
 
+    <h2>Exercice 2 : Triangle rectangle gauche</h2>
+    <p>Affichage d'un triangle rectangle aligné sur la gauche :</p>
+    <% for (int i = 1; i <= cpt; i++) { %>
+        <p>
+        <% for (int j = 1; j <= i; j++) { %>
+            <%= "*" %>
+        <% } %>
+        </p>
+    <% } %>
+
 <% } %>
 
 <p><a href="index.html">Retour au sommaire</a></p>
