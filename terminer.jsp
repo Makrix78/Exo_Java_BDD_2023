@@ -2,10 +2,19 @@
 <%@ include file="TaskDefinition.jspf" %>
 <%
     int index = Integer.parseInt(request.getParameter("index"));
-    List<Task> taches = (List<Task>) session.getAttribute("taches");
-    if (taches != null && index >= 0 && index < taches.size()) {
-        Task t = taches.get(index);
-        t.setDone(true);
+    Object obj = session.getAttribute("taches");
+
+    if (obj instanceof List) {
+        List taches = (List) obj;
+
+        if (index >= 0 && index < taches.size()) {
+            Object element = taches.get(index);
+            if (element instanceof Task) {
+                Task t = (Task) element;
+                t.setDone(true);
+            }
+        }
     }
+
     response.sendRedirect("taches.jsp");
 %>
