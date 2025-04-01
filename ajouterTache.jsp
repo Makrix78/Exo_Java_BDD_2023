@@ -1,10 +1,10 @@
-<%@ page import="java.util.*, modele.Task" %>
+<%@ page import="java.util.*, mypackage.Task" %>
 <%
     String title = request.getParameter("title");
     String description = request.getParameter("description");
-    String dueDate = request.getParameter("dueDate"); // 👈 récupère la date
+    String dueDate = request.getParameter("dueDate");
 
-    Task task = new Task(title, description, dueDate); // 👈 ajoute la date ici
+    Task task = new Task(title, description, dueDate);
 
     List<Task> taches = (List<Task>) session.getAttribute("taches");
     if (taches == null) {
