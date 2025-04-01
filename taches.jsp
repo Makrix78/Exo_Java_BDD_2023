@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.*" %>
 <%@ include file="TaskDefinition.jspf" %>
-<%@ page session="true" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,39 +11,6 @@
 <h1>Mes Tâches</h1>
 
 <%
-    // 🗑 Supprimer une tâche si ?supprimer=0
-    String supprimerParam = request.getParameter("supprimer");
-    if (supprimerParam != null) {
-        try {
-            int index = Integer.parseInt(supprimerParam);
-            List taches = (List) session.getAttribute("taches");
-            if (taches != null && index >= 0 && index < taches.size()) {
-                taches.remove(index);
-            }
-        } catch (Exception e) {
-            out.println("<p>Erreur de suppression : " + e.getMessage() + "</p>");
-        }
-    }
-
-    // ✅ Marquer une tâche comme terminée si ?terminer=1
-    String terminerParam = request.getParameter("terminer");
-    if (terminerParam != null) {
-        try {
-            int index = Integer.parseInt(terminerParam);
-            List taches = (List) session.getAttribute("taches");
-            if (taches != null && index >= 0 && index < taches.size()) {
-                Object element = taches.get(index);
-                if (element instanceof Task) {
-                    Task t = (Task) element;
-                    t.setDone(true);
-                }
-            }
-        } catch (Exception e) {
-            out.println("<p>Erreur de validation : " + e.getMessage() + "</p>");
-        }
-    }
-
-    // 📝 Affichage
     Object obj = session.getAttribute("taches");
 
     if (obj == null || !(obj instanceof List)) {
@@ -67,12 +33,12 @@
         <strong>Date d’échéance :</strong> <%= t.getDueDate() %><br>
         <strong>Statut :</strong> <%= t.isDone() ? "✔ Terminée" : "⏳ En cours" %><br>
 
-        <% if (!t.isDone()) { %>
-            <a href="taches.jsp?terminer=<%= i %>">✅ Marquer comme terminée</a> |
-        <% } %>
-        <a href="taches.jsp?supprimer=<%= i %>">🗑 Supprimer</a>
+        <a href="terminer.jsp?index=<%= i %>">✅ Marquer comme terminée</a> |
+        <a href="supprimer.jsp?index=<%= i %>">🗑 Supprimer</a>
     </div>
 <%
+            } else {
+                out.println("<p>⚠ Objet inconnu dans la liste : " + element + "</p>");
             }
         }
     }
