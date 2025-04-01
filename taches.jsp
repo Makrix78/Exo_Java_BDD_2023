@@ -1,37 +1,43 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.*, modele.Task" %>
+<%@ page session="true" %>
+<!DOCTYPE html>
 <html>
 <head>
-<title>Taches</title>
+    <title>Liste des Tâches</title>
 </head>
-<body bgcolor=white>
-<h1>Saisir une tache</h1>
-<form action="#" method="post">
-    <label for="inputValeur">Saisir le nom d'une tache : </label>
-    <input type="text" id="inputValeur" name="valeur">
-    <input type="submit" value="Enregistrer">
-</form>
+<body>
 
-<%! 
-    class MyClass {
-        String nameTache;
+<h1>Mes Tâches</h1>
 
-        public MyClass(String name) {
-            nameTache = name;
+<%
+    List<Task> taches = (List<Task>) session.getAttribute("taches");
+
+    if (taches == null || taches.isEmpty()) {
+%>
+    <p>Aucune tâche enregistrée.</p>
+<%
+    } else {
+        for (int i = 0; i < taches.size(); i++) {
+            Task t = taches.get(i);
+%>
+    <div style="border:1px solid #ccc; margin:10px; padding:10px;">
+        <strong>Titre :</strong> <%= t.getTitle() %><br>
+        <strong>Description :</strong> <%= t.getDescription() %><br>
+        <strong>Date d’échéance :</strong> <%= t.getDueDate() %><br>
+        <strong>Statut :</strong> <%= t.isDone() ? "✔ Terminée" : "⏳ En cours" %><br>
+
+        <a href="terminer.jsp?index=<%= i %>">✅ Marquer comme terminée</a> |
+        <a href="supprimer.jsp?index=<%= i %>">🗑 Supprimer</a>
+    </div>
+<%
         }
     }
 %>
 
-<%
-    String valeur = request.getParameter("valeur");
-
-    if (valeur != null && !valeur.isEmpty()) {
-        MyClass tache = new MyClass(valeur);
-%>
-        <p>Nom de la tÃ¢che : <%= tache.nameTache %></p>
-<%
-    }
-%>
+<br>
+<a href="ajouter.jsp">➕ Ajouter une nouvelle tâche</a> |
+<a href="index.jsp">🏠 Accueil</a>
 
 </body>
 </html>
