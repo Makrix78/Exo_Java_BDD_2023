@@ -20,6 +20,8 @@
     } else {
         List taches = (List) obj;
 
+        out.println("<p>Nombre de tâches : " + taches.size() + "</p>");
+
         for (int i = 0; i < taches.size(); i++) {
             Object element = taches.get(i);
             if (element instanceof Task) {
@@ -35,6 +37,8 @@
         <a href="supprimer.jsp?index=<%= i %>">🗑 Supprimer</a>
     </div>
 <%
+            } else {
+                out.println("<p>⚠ Objet inconnu dans la liste : " + element + "</p>");
             }
         }
     }
