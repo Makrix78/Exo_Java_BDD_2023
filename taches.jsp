@@ -1,5 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.util.*, mypackage.Task" %>
+<%@ page import="java.util.*, Task" %>
 <%@ page session="true" %>
 <!DOCTYPE html>
 <html>
@@ -36,8 +35,7 @@
 %>
 
 <br>
-<a href="ajouter.jsp">➕ Ajouter une nouvelle tâche</a> |
-<a href="index.jsp">🏠 Accueil</a>
+<a href="ajouter.jsp">➕ Ajouter une nouvelle tâche</a>
 
 </body>
 </html>
