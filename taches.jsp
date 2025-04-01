@@ -1,5 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.*" %>
-<%@ page session="true" %>
 <%@ include file="TaskDefinition.jspf" %>
 <!DOCTYPE html>
 <html>
@@ -11,15 +11,19 @@
 <h1>Mes Tâches</h1>
 
 <%
-    List<Task> taches = (List<Task>) session.getAttribute("taches");
+    Object obj = session.getAttribute("taches");
 
-    if (taches == null || taches.isEmpty()) {
+    if (obj == null || !(obj instanceof List)) {
 %>
     <p>Aucune tâche enregistrée.</p>
 <%
     } else {
+        List taches = (List) obj;
+
         for (int i = 0; i < taches.size(); i++) {
-            Task t = taches.get(i);
+            Object element = taches.get(i);
+            if (element instanceof Task) {
+                Task t = (Task) element;
 %>
     <div style="border:1px solid #ccc; margin:10px; padding:10px;">
         <strong>Titre :</strong> <%= t.getTitle() %><br>
@@ -31,6 +35,7 @@
         <a href="supprimer.jsp?index=<%= i %>">🗑 Supprimer</a>
     </div>
 <%
+            }
         }
     }
 %>
