@@ -1,4 +1,25 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%! 
+    public class Task {
+        private String title;
+        private String description;
+        private String dueDate;
+        private boolean done;
+
+        public Task(String title, String description, String dueDate) {
+            this.title = title;
+            this.description = description;
+            this.dueDate = dueDate;
+            this.done = false;
+        }
+
+        public String getTitle() { return title; }
+        public String getDescription() { return description; }
+        public String getDueDate() { return dueDate; }
+        public boolean isDone() { return done; }
+        public void setDone(boolean done) { this.done = done; }
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +41,6 @@
     </form>
 
     <br>
-    <a href="taches.jsp">📋 Voir les tâches</a> |
-    <a href="index.jsp">🏠 Accueil</a>
+    <a href="taches.jsp">📋 Voir les tâches</a>
 </body>
 </html>
