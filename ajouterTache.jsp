@@ -18,5 +18,7 @@
     }
 
     taches.add(task);
+
+    out.println("<p>Tâche ajoutée : " + task.getTitle() + "</p>");
     response.sendRedirect("taches.jsp");
 %>
