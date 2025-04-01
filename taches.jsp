@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.util.*, modele.Task" %>
+<%@ page import="java.util.*, mypackage.Task" %>
 <%@ page session="true" %>
 <!DOCTYPE html>
 <html>
