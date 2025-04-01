@@ -11,6 +11,36 @@
 <h1>Mes Tâches</h1>
 
 <%
+    // ✅ Gestion de suppression par lien GET : ?supprimer=1
+    String supprimerParam = request.getParameter("supprimer");
+    if (supprimerParam != null) {
+        try {
+            int index = Integer.parseInt(supprimerParam);
+            List taches = (List) session.getAttribute("taches");
+            if (taches != null && index >= 0 && index < taches.size()) {
+                taches.remove(index);
+            }
+        } catch (Exception e) {
+            out.println("<p>Erreur de suppression : " + e.getMessage() + "</p>");
+        }
+    }
+
+    // ✅ Gestion de marquage terminé par lien GET : ?terminer=2
+    String terminerParam = request.getParameter("terminer");
+    if (terminerParam != null) {
+        try {
+            int index = Integer.parseInt(terminerParam);
+            List taches = (List) session.getAttribute("taches");
+            if (taches != null && index >= 0 && index < taches.size()) {
+                Task t = (Task) taches.get(index);
+                t.setDone(true);
+            }
+        } catch (Exception e) {
+            out.println("<p>Erreur de validation : " + e.getMessage() + "</p>");
+        }
+    }
+
+    // ✅ Affichage
     Object obj = session.getAttribute("taches");
 
     if (obj == null || !(obj instanceof List)) {
@@ -33,12 +63,12 @@
         <strong>Date d’échéance :</strong> <%= t.getDueDate() %><br>
         <strong>Statut :</strong> <%= t.isDone() ? "✔ Terminée" : "⏳ En cours" %><br>
 
-        <a href="terminer.jsp?index=<%= i %>">✅ Marquer comme terminée</a> |
-        <a href="supprimer.jsp?index=<%= i %>">🗑 Supprimer</a>
+        <% if (!t.isDone()) { %>
+            <a href="taches.jsp?terminer=<%= i %>">✅ Marquer comme terminée</a> |
+        <% } %>
+        <a href="taches.jsp?supprimer=<%= i %>">🗑 Supprimer</a>
     </div>
 <%
-            } else {
-                out.println("<p>⚠ Objet inconnu dans la liste : " + element + "</p>");
             }
         }
     }
