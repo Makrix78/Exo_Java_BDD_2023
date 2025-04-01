@@ -22,7 +22,7 @@
 
     <!-- Ajout pour définir la page d’accueil de ton projet -->
     <welcome-file-list>
-        <welcome-file>ajouter.jsp</welcome-file>
+        <welcome-file>ajout.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>
