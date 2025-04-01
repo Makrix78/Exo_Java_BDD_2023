@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.*" %>
 <%@ include file="TaskDefinition.jspf" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,36 +12,28 @@
 <h1>Mes Tâches</h1>
 
 <%
-    // ✅ Gestion de suppression par lien GET : ?supprimer=1
+    // 🔁 Supprimer une tâche si ?supprimer=0
     String supprimerParam = request.getParameter("supprimer");
     if (supprimerParam != null) {
-        try {
-            int index = Integer.parseInt(supprimerParam);
-            List taches = (List) session.getAttribute("taches");
-            if (taches != null && index >= 0 && index < taches.size()) {
-                taches.remove(index);
-            }
-        } catch (Exception e) {
-            out.println("<p>Erreur de suppression : " + e.getMessage() + "</p>");
+        int index = Integer.parseInt(supprimerParam);
+        List taches = (List) session.getAttribute("taches");
+        if (taches != null && index >= 0 && index < taches.size()) {
+            taches.remove(index);
         }
     }
 
-    // ✅ Gestion de marquage terminé par lien GET : ?terminer=2
+    // ✅ Marquer une tâche comme terminée
     String terminerParam = request.getParameter("terminer");
     if (terminerParam != null) {
-        try {
-            int index = Integer.parseInt(terminerParam);
-            List taches = (List) session.getAttribute("taches");
-            if (taches != null && index >= 0 && index < taches.size()) {
-                Task t = (Task) taches.get(index);
-                t.setDone(true);
-            }
-        } catch (Exception e) {
-            out.println("<p>Erreur de validation : " + e.getMessage() + "</p>");
+        int index = Integer.parseInt(terminerParam);
+        List taches = (List) session.getAttribute("taches");
+        if (taches != null && index >= 0 && index < taches.size()) {
+            Task t = (Task) taches.get(index);
+            t.setDone(true);
         }
     }
 
-    // ✅ Affichage
+    // Affichage des tâches
     Object obj = session.getAttribute("taches");
 
     if (obj == null || !(obj instanceof List)) {
@@ -53,9 +46,7 @@
         out.println("<p>Nombre de tâches : " + taches.size() + "</p>");
 
         for (int i = 0; i < taches.size(); i++) {
-            Object element = taches.get(i);
-            if (element instanceof Task) {
-                Task t = (Task) element;
+            Task t = (Task) taches.get(i); // ✅ cast direct, on fait confiance
 %>
     <div style="border:1px solid #ccc; margin:10px; padding:10px;">
         <strong>Titre :</strong> <%= t.getTitle() %><br>
@@ -69,7 +60,6 @@
         <a href="taches.jsp?supprimer=<%= i %>">🗑 Supprimer</a>
     </div>
 <%
-            }
         }
     }
 %>
